@@ -3,64 +3,43 @@
 
 // but you don't so you're going to write it from scratch:
 
+
+//recursive function
 var iterateArray = function(obj, i){
-  //var arrayStringification = "";
-  if(i === 0){
-      return stringification += "[]";
+  //var stringification = "";
+  if(i === obj.length){
+      return;
     }
     stringifyJSON(obj[i]);
-    return iterateArray(obj, i-1); 
+    return iterateArray(obj, i+1); 
 };
 
 
+//stringify function
 var stringifyJSON = function(obj) {
   var stringification = "";
   if (typeof(obj) === "string"){
-  	return stringification + '"'+obj+'"';
+  	 stringification += '"'+obj+'"';
   }else if(typeof(obj) === 'number'){
   	var num = obj;
-  	return num.toString();
+  	stringification += num.toString();
   }else if(obj === null){
-  	return "null";
+  	stringification += "null";
   }else if(obj === false){
-  	return "false";
+  	stringification += "false";
   }else if(obj === true){
-  	return "true";
+  	stringification += "true";
   }else if (typeof(obj) === "object"){
   	if((Array.isArray(obj))===true){
-      iterateArray(obj, obj.length);  
+      if(obj.length === 0){
+        stringification += '[]';
+      }
+      iterateArray(obj, 0);  
     }
-    //return 'object not array';
   }
+  return stringification;
 };
 
 
-
-
-
-
-    
-
-
-
-/*
-else if(typeof(obj[i]) === "string"){
-      arrayStringification + '"'+obj[i]+'"';
-      return iterateArray(obj, i-1);
-    }else if(typeof(obj[i]) === 'number'){
-      var num = obj[i];
-      arrayStringification += num.toString();
-      return iterateArray(obj, i-1);
-    }else if(obj[i] === null){
-      arrayStringification += "null";
-      return iterateArray(obj, i-1);
-    }else if(obj[i] === false){
-      arrayStringification += "false";
-      return iterateArray(obj, i-1);
-    }else if(obj[i] === true){
-      arrayStringification += "true";
-      return iterateArray(obj, i-1);
-    }
-*/
 
 

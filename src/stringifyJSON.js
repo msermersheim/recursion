@@ -18,6 +18,21 @@ var iterateArray = function(obj, i){
   }
 };
 
+var objectArray = [];
+
+var iterateObject = function(obj){
+  
+  for(var key in obj){
+    if(key===undefined){
+      return '{}';
+    }
+    //objectArray.push(stringifyJSON(key)+':');
+    //objectArray.push(stringifyJSON(obj[key]);
+    key = stringifyJSON(key);
+    obj[key] = stringifyJSON(obj[key]);
+  }
+};
+
 
 
 //stringify function
@@ -35,10 +50,13 @@ var stringifyJSON = function(obj) {
   }else if(obj === true){
   	return "true";
   }else if((Array.isArray(obj))===true){
-      iterateArray(obj, 0);  
+      iterateArray(obj, 0); 
+      return '['+obj+']'; 
+  }else if((Array.isArray(obj))===false){
+      iterateObject(obj);
+      return '{'+objectArray+'}';
+      objectArray = [];
   }
-    return '['+obj+']';
-  
 };
 
 

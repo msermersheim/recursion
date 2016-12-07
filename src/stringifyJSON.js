@@ -4,40 +4,41 @@
 // but you don't so you're going to write it from scratch:
 
 
-//recursive function
+
+
 var iterateArray = function(obj, i){
-  //var stringification = "";
-  if(i === obj.length){
-      return;
-    }
-    stringifyJSON(obj[i]);
-    return iterateArray(obj, i+1); 
+  
+  if(obj.length === 0){
+    return '[]';
+  }else if(i === obj.length){
+    return;
+  }else{
+    obj[i] = stringifyJSON(obj[i]);
+    return iterateArray(obj, i+1);
+  }
 };
+
 
 
 //stringify function
 var stringifyJSON = function(obj) {
-  var stringification = "";
+
   if (typeof(obj) === "string"){
-  	 stringification += '"'+obj+'"';
+  	 return '"'+obj+'"';
   }else if(typeof(obj) === 'number'){
   	var num = obj;
-  	stringification += num.toString();
+  	return num.toString();
   }else if(obj === null){
-  	stringification += "null";
+  	return "null";
   }else if(obj === false){
-  	stringification += "false";
+  	return "false";
   }else if(obj === true){
-  	stringification += "true";
-  }else if (typeof(obj) === "object"){
-  	if((Array.isArray(obj))===true){
-      if(obj.length === 0){
-        stringification += '[]';
-      }
+  	return "true";
+  }else if((Array.isArray(obj))===true){
       iterateArray(obj, 0);  
-    }
   }
-  return stringification;
+    return '['+obj+']';
+  
 };
 
 

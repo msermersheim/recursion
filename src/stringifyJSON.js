@@ -26,11 +26,13 @@ var iterateObject = function(obj){
     if(key===undefined){
       return '{}';
     }
-    //objectArray.push(stringifyJSON(key)+':');
-    //objectArray.push(stringifyJSON(obj[key]);
-    key = stringifyJSON(key);
-    obj[key] = stringifyJSON(obj[key]);
+    objectArray.push(key);
+    objectArray.push(':')
+    objectArray.push(obj[key]);
+    //key = stringifyJSON(key);
+    //obj[key] = stringifyJSON(obj[key]);
   }
+  return;
 };
 
 
@@ -54,7 +56,8 @@ var stringifyJSON = function(obj) {
       return '['+obj+']'; 
   }else if((Array.isArray(obj))===false){
       iterateObject(obj);
-      return '{'+objectArray+'}';
+      //iterateArray(objectArray);
+      return '{'+objectArray.join()+'}';
       objectArray = [];
   }
 };

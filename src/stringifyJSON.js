@@ -19,7 +19,7 @@ var iterateArray = function(obj, i){
 };
 
 var objectArray = [];
-var newArray = {};
+//var newArray = {};
 var iterateObject = function(obj){
   
   /*Object.keys(obj).forEach(function(key){
@@ -42,11 +42,11 @@ var iterateObject = function(obj){
         //obj[key] = stringifyJSON(obj[key]);
       }
     }
-    
+    return;
     //key = stringifyJSON(key);
     //obj[key] = stringifyJSON(obj[key]);
   }
-  return;
+  
 };
 
 
@@ -74,9 +74,9 @@ var stringifyJSON = function(obj) {
       return '{'+objectArray+'}';
       
   }
-  
+  objectArray = [];
 };
-objectArray = [];
+
 
 
 

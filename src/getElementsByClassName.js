@@ -4,7 +4,59 @@
 // };
 
 // But instead we're going to implement it from scratch:
-var getElementsByClassName = function(className
-) {
-  // your code here
+
+//$(document).ready(function() {
+
+
+var getElementsByClassName = function(className) {
+	var nodeArray = document.body.childNodes;
+	var resultArray = Array.prototype.slice.call(nodeArray);	
+	var answerArray = [];
+	
+	resultArray.forEach(function(element){
+		console.log(element);
+		/*for(var i=0; i<element.classList.length; i++){
+			if(element.classList[i] === className){
+				answerArray.push('div.'+element.classList[i]);
+			}
+		}*/
+	})
+
+
+
+
+	/*for (var j=0; j<resultArray.length; j++){	
+		for(var k=0; k<resultArray[j].classList.length; k++){
+			
+			if(resultArray[i].classList[j] === className){
+  			}
+  			answerArray.push('div.'+resultArray[i].classList[j]);
+		}
+	}*/		
+	
+	//return answerArray;
 };
+
+
+//});
+/*
+var getElementsByClassName = function(className) {
+	var nodeArray = document.body.childNodes;
+	var resultArray = [];
+	for(var i = 0; i < document.body.childNodes.length; i++){
+		for(var j = 0; j < document.body.childNodes[i].classList.length; j++){
+			if(document.body.childNodes[i].classList[j] === className){
+    			
+  			}
+  			resultArray.push('div.'+document.body.childNodes[i].classList[j]);
+		}
+			
+	}
+	return resultArray;
+};
+
+<button onclick="console.log(document.body.childNodes[6].classList.length)">try classfinder</button>
+<button onclick="console.log(document.getElementsByClassName('targetClassName'))">try regular</button>
+*/
+
+//body.childNodes[0].nodeName

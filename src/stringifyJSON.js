@@ -19,16 +19,30 @@ var iterateArray = function(obj, i){
 };
 
 var objectArray = [];
-
+var newArray = {};
 var iterateObject = function(obj){
   
+  /*Object.keys(obj).forEach(function(key){
+    var value = stringifyJSON(obj[key]);
+
+    key = stringifyJSON(key);
+    newArray[key] = value;
+  });*/
   for(var key in obj){
-    if(key===undefined){
+    if(obj.hasOwnProperty(key)){
+      if(key===undefined){
       return '{}';
+      }else if (typeof obj[key]==="object"){
+        iterateObject(obj[key]);
+      }else{
+        objectArray.push(stringifyJSON(key)+':'+stringifyJSON(obj[key]));
+        //objectArray.push(':')
+        //objectArray.push(stringifyJSON(obj[key]));
+        //key = stringifyJSON(key);
+        //obj[key] = stringifyJSON(obj[key]);
+      }
     }
-    objectArray.push(key);
-    objectArray.push(':')
-    objectArray.push(obj[key]);
+    
     //key = stringifyJSON(key);
     //obj[key] = stringifyJSON(obj[key]);
   }
@@ -57,11 +71,12 @@ var stringifyJSON = function(obj) {
   }else if((Array.isArray(obj))===false){
       iterateObject(obj);
       //iterateArray(objectArray);
-      return '{'+objectArray.join()+'}';
-      objectArray = [];
+      return '{'+objectArray+'}';
+      
   }
+  
 };
-
+objectArray = [];
 
 
 

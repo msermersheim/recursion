@@ -7,7 +7,24 @@
 
 //$(document).ready(function() {
 
+var getElementsByClassName = function(className) {
+  var nodes = [];
+  function classes(node) {
+    if (_.contains(node.classList, className)) {
+      nodes.push(node);
+    }
+    _.each(node.childNodes, function(child){
+      classes(child);
+    });
+  }
+  classes(document.body);
+  return nodes;
+};
 
+
+
+
+/*
 var getElementsByClassName = function(className) {
 	var nodeArray = document.body.childNodes;
 	var resultArray = Array.prototype.slice.call(nodeArray);	
@@ -15,13 +32,13 @@ var getElementsByClassName = function(className) {
 	
 	resultArray.forEach(function(element){
 		console.log(element);
-		/*for(var i=0; i<element.classList.length; i++){
+		for(var i=0; i<element.classList.length; i++){
 			if(element.classList[i] === className){
 				answerArray.push('div.'+element.classList[i]);
 			}
-		}*/
+		}
 	})
-
+*/
 
 
 
@@ -35,7 +52,7 @@ var getElementsByClassName = function(className) {
 	}*/		
 	
 	//return answerArray;
-};
+//};
 
 
 //});

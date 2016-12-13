@@ -1,12 +1,37 @@
-// this is what you would do if you liked things to be easy:
-// var stringifyJSON = JSON.stringify;
+var stringifyJSON = function(obj) {
+  // your code goes here
+  if (typeof(obj) === 'number'){
+    return obj.toString();
+  }
+  if (obj === null){
+    return "null";
+  }
+  if (typeof(obj)=== 'boolean'){
+    return "" +obj;
+  }
+  if (typeof(obj) === 'string'){
+    return '"'+obj+'"';
+  }
+  if (Array.isArray(obj) === true){
+    return '['+ obj.map(function(item){
+      return stringifyJSON(item) ;
+    })+']';
+  }
 
-// but you don't so you're going to write it from scratch:
+    var newObj = [];
+    for(var key in obj){
+      if (obj[key]=== undefined || typeof(obj)=== 'function'){
+        return '{}';
+      }else{
+        newObj.push ( stringifyJSON(key) + ':' +stringifyJSON(obj[key])); 
+      }
+    }
+    return '{' + newObj + '}';
+  
+};
 
 
-
-
-var iterateArray = function(obj, i){
+/*var iterateArray = function(obj, i){
   
   if(obj.length === 0){
     return '[]';
@@ -27,7 +52,7 @@ var iterateObject = function(obj){
 
     key = stringifyJSON(key);
     newArray[key] = value;
-  });*/
+  });
   for(var key in obj){
     if(obj.hasOwnProperty(key)){
       if(key===undefined){
@@ -36,17 +61,11 @@ var iterateObject = function(obj){
         iterateObject(obj[key]);
       }else{
         objectArray.push(stringifyJSON(key)+':'+stringifyJSON(obj[key]));
-        //objectArray.push(':')
-        //objectArray.push(stringifyJSON(obj[key]));
-        //key = stringifyJSON(key);
-        //obj[key] = stringifyJSON(obj[key]);
       }
     }
-    return;
-    //key = stringifyJSON(key);
-    //obj[key] = stringifyJSON(obj[key]);
+    //return;
   }
-  
+  //objectArray = [];
 };
 
 
@@ -76,7 +95,7 @@ var stringifyJSON = function(obj) {
   }
   objectArray = [];
 };
-
+*/
 
 
 
